@@ -1,0 +1,11 @@
+CREATE DATABASE produtos
+USE produtos
+
+CREATE TABLE tbproduto(
+   id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(255),
+   preco FLOAT,
+   quantidade INT
+)
+
+SELECT *FROM tbproduto
