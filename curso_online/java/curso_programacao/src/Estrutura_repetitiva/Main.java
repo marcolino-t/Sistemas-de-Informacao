@@ -1,4 +1,4 @@
-package curso_programacao.Estrutura_sequencial.Estrutura_repetitiva;
+package Estrutura_repetitiva;
 
 import java.util.Locale;
 import java.util.Scanner;

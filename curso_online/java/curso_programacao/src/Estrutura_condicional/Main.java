@@ -1,5 +1,4 @@
-package curso_programacao.Estrutura_sequencial.Estrutura_condicional;
-
+package Estrutura_condicional;
 
 import java.util.Scanner;
 
