@@ -1,3 +1,4 @@
+// Função para conexão com o banco de dados
 async function connect() {
     if (global.connection && global.connection.state != 'disconnected') {
         return global.connection;
@@ -14,11 +15,12 @@ async function connect() {
     return connection;
 }
 
+// Função para adicionar uma nova compra (POST)
 exports.post = async (req, res, next) => {
     try {
         const con = await connect();
-        const sql = 'INSERT INTO lista_compras (nome, quantidade, preco, observacao) VALUES (?, ?, ?, ?)';
-        const values = [req.body.nome, req.body.quantidade, req.body.preco, req.body.observacao];
+        const sql = 'INSERT INTO lista_compras (nome, marca, quantidade, preco, observacao) VALUES (?, ?, ?, ?, ?)'; // Incluindo "marca"
+        const values = [req.body.nome, req.body.marca, req.body.quantidade, req.body.preco, req.body.observacao]; // Incluindo "marca"
         await con.query(sql, values);
         res.status(201).send('Compra inserida com sucesso');
     } catch (error) {
@@ -26,12 +28,13 @@ exports.post = async (req, res, next) => {
     }
 }
 
+// Função para atualizar uma compra (PUT)
 exports.put = async (req, res, next) => {
     try {
-        const id = req.params.id;
+        let id = req.params.id; 
         const con = await connect();
-        const sql = 'UPDATE lista_compras SET nome = ?, quantidade = ?, preco = ?, observacao = ? WHERE codigo = ?';
-        const values = [req.body.nome, req.body.quantidade, req.body.preco, req.body.observacao, id];
+        const sql = 'UPDATE lista_compras SET nome = ?, marca = ?, quantidade = ?, preco = ?, observacao = ? WHERE id = ?'; 
+        const values = [req.body.nome, req.body.marca, req.body.quantidade, req.body.preco, req.body.observacao, id]; 
         await con.query(sql, values);
         res.status(200).send({ message: 'Compra atualizada com sucesso' });
     } catch (error) {
@@ -39,11 +42,12 @@ exports.put = async (req, res, next) => {
     }
 };
 
+// Função para excluir uma compra (DELETE)
 exports.delete = async (req, res, next) => {
     try {
-        const id = req.params.id;
+        let id = req.params.id; 
         const con = await connect();
-        const sql = 'DELETE FROM lista_compras WHERE codigo = ?';
+        const sql = 'DELETE FROM lista_compras WHERE id = ?'; 
         const values = [id];
         await con.query(sql, values);
         res.status(200).send('Compra excluída com sucesso');
@@ -52,21 +56,23 @@ exports.delete = async (req, res, next) => {
     }
 }
 
+// Função para listar todas as compras (GET)
 exports.get = async (req, res, next) => {
     try {
         const con = await connect();
-        const [rows] = await con.query('SELECT * FROM lista_compras');
+        const [rows] = await con.query('SELECT * FROM lista_compras'); 
         res.status(200).send(rows);
     } catch (error) {
         res.status(500).send({ error: 'Erro ao listar compras' });
     }
 }
 
+// Função para buscar uma compra por ID (GET By ID)
 exports.getByIdCompra = async (req, res, next) => {
     try {
-        const id = req.params.id;
+        let id = req.params.id; 
         const con = await connect();
-        const [rows] = await con.query('SELECT * FROM lista_compras WHERE codigo = ?', [id]);
+        const [rows] = await con.query('SELECT * FROM lista_compras WHERE id = ?', [id]); 
         if (rows.length === 0) {
             return res.status(404).send({ error: 'Compra não encontrada' });
         }

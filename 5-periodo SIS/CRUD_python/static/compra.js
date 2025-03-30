@@ -2,7 +2,7 @@ const modalCadastroCompra = new bootstrap.Modal(document.getElementById('modalCa
 
 var compraAtual;
 function alterar(id) {
-  fetch("http://127.0.0.1:3333/compra/" + id)
+  fetch("http://127.0.0.1:5000/compra/" + id)
     .then(resp => resp.json())
     .then(dados => {
       console.log(dados); 
@@ -23,7 +23,7 @@ function alterar(id) {
 
 
 function excluir(id) {
-  fetch("http://127.0.0.1:3333/compra/" + id, {  
+  fetch("http://127.0.0.1:5000/compra/" + id, {  
     method: "DELETE",
   })
   .then(() => listar())
@@ -47,10 +47,10 @@ function salvar() {
 
   let url, metodo;
   if (compraAtual > 0) {
-    url = "http://127.0.0.1:3333/compra/" + compraAtual;
+    url = "http://127.0.0.1:5000/compra/" + compraAtual;
     metodo = "PUT";
   } else {
-    url = "http://127.0.0.1:3333/compra";
+    url = "http://127.0.0.1:5000/compra";
     metodo = "POST";
   }
 
@@ -83,7 +83,7 @@ function listar() {
   const listar = document.getElementById("lista");
   listar.innerHTML = "<tr><td colspan='6'>Carregando...</td></tr>";  
 
-  fetch("http://127.0.0.1:3333/compra")
+  fetch("http://127.0.0.1:5000/compra")
     .then(resp => resp.json())
     .then(dados => mostrar(dados))
     .catch(err => {
