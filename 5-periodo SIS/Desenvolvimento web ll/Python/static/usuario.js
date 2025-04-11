@@ -3,7 +3,7 @@ const modalcadastro = new bootstrap.Modal(document.getElementById('modalcadastro
 var idusuarioatual;
 
 function alterar(idusuario) {
-  fetch("http://127.0.0.1:33/usuario/" + idusuario)
+  fetch("http://127.0.0.1:5000/usuario/" + idusuario)
     .then(resp => resp.json())
     .then(dados => {
       idusuarioatual = idusuario; 
@@ -69,13 +69,12 @@ function listar() {
   const listar = document.getElementById("lista");
   listar.innerHTML = "<tr><td colspan='5'>Carregando...</td></tr>";  
 
-  fetch("http://127.0.0.1:5000/usuario")
-    .then(resp => resp.json())
-    .then(dados => mostrar(dados))
-    .catch(err => {
-      console.error("Erro ao listar usuários:", err);
-      listar.innerHTML = "<tr><td colspan='5'>Erro ao carregar dados.</td></tr>";  
-    });
+  fetch("http://127.0.0.1:5000/usuario",
+   
+    headers: {
+      'Authorization' : 'Bearer' + sessionStorage.getItem("token")
+    }
+   }
 }
 
 function mostrar(dados) {

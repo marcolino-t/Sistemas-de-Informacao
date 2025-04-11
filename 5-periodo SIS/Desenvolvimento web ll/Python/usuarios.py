@@ -3,24 +3,15 @@ from db_config import connect_db
 from flask import jsonify
 from flask import flash, request, Blueprint,current_app
 import jwt
+from funcoes import valida_token
 
 usuario_bp = Blueprint("usuario", __name__)
 
 @usuario_bp.route('/usuarios')
 def usuario():
-    try:
-        print("entrou na rota")
-        token = request.headers.get('Authorization')
-        if not token or not token.startswith('Bearer '):
-            print("Token não encontrado")
-            return {"sucesso": False, }, 401
-        #valida token
-        dados = jwt.decode(token.split(' ')[1], 
-                current_app.config.get('SECRET_KEY'), 
-                algorithms=["HS256"])
-    except Exception as e:
-            print("lucas gay", e)
-            return {"sucesso": False, }, 401
+    if not valida_token(request.headers.get('Authorization')):
+        return {"sucesso": False, }, 401
+
             
     try:
         conn = connect_db()
@@ -39,6 +30,9 @@ def usuario():
 
 @usuario_bp.route('/usuario/<id>')
 def usuariobyid(id):
+    if not valida_token(request.headers.get('Authorization')):
+        return {"sucesso": False, }, 401
+
     try:
         conn = connect_db()
         cur = conn.cursor(pymysql.cursors.DictCursor)
@@ -53,6 +47,10 @@ def usuariobyid(id):
 
 @usuario_bp.route('/usuario', methods=['POST'])
 def usuarionovo(id):
+    if not valida_token(request.headers.get('Authorization')):
+        return {"sucesso": False, }, 401
+
+    
     try:
         conn = connect_db()
         cur = conn.cursor(pymysql.cursors.DictCursor)
@@ -73,6 +71,9 @@ def usuarionovo(id):
     
 @usuario_bp.route('/usuario/<id>', methods=['PUT'])
 def usuarioatualiza(id):
+    if not valida_token(request.headers.get('Authorization')):
+        return {"sucesso": False, }, 401
+
     try:
         conn = connect_db()
         cur = conn.cursor(pymysql.cursors.DictCursor)
@@ -93,6 +94,9 @@ def usuarioatualiza(id):
 
 @usuario_bp.route('/usuario/<id>', methods=['DELETE'])
 def usuariodeleta(id):
+    if not valida_token(request.headers.get('Authorization')):
+        return {"sucesso": False, }, 401
+
     try:
         conn = connect_db()
         cur = conn.cursor(pymysql.cursors.DictCursor)
