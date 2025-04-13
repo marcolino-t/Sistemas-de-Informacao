@@ -3,6 +3,11 @@ from app import mysql
 
 exame_blueprint = Blueprint('exame', __name__)
 
+@exame_blueprint.route('/inicio')
+def pagina_inicio():
+    return render_template('inicio.html')
+
+
 # Rota para listar todos os exames
 @exame_blueprint.route('/exames', methods=['GET'])
 def listar_exames():

@@ -1,0 +1,314 @@
+/* RESET GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ESTILOS GERAIS */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://www.example.com/sua-imagem.jpg') center/cover no-repeat;
+    background-size: cover;
+    background: url('/static/images/imagem.jpg') center/cover no-repeat;
+    background-blur: 10px;
+    color: #fff;
+    line-height: 1.6;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inicio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+/* Caixa de login */
+.inicio-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Título */
+.inicio-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+/* Descrição */
+.inicio-description {
+    font-size: 1.1rem;
+    color: #ddd;
+    margin-bottom: 2rem;
+}
+
+/* Botões */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cta-buttons .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-buttons .btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.cta-buttons .btn-secondary {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.cta-buttons .btn-primary:hover {
+    background-color: #1e3a8a;
+}
+
+.cta-buttons .btn-secondary:hover {
+    background-color: #d97706;
+}
+
+/* Seção sobre o projeto */
+.info-section {
+    margin-top: 3rem;
+    text-align: left;
+    color: #ddd;
+}
+
+.info-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-section li {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+}
+
+/* RESET GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ESTILOS GERAIS */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Container geral */
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+    font-weight: 600;
+}
+
+/* Labels e inputs */
+.form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #555;
+}
+
+.form input,
+.form select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 0.4rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border 0.3s ease-in-out;
+}
+
+.form input:focus,
+.form select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Botões */
+.btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Tabela personalizada */
+.table-container {
+    margin-top: 2rem;
+    overflow-x: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.custom-table thead {
+    background-color: #333;
+    color: white;
+    text-transform: uppercase;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-weight: 500;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tr:hover {
+    background-color: #eaeaea;
+}
+
+/* Ações de botão */
+.actions {
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn.small {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.btn.warning {
+    background-color: #FFA500;
+}
+
+.btn.danger {
+    background-color: #FF6347;
+}
+
+.btn.warning:hover {
+    background-color: #FF8C00;
+}
+
+.btn.danger:hover {
+    background-color: #FF4500;
+}
+
+/* Estilo de formulário */
+.form {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Input de grupos dentro do formulário */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4CAF50;
+}
+
+/* Alinhamento de texto */
+.text-center {
+    text-align: center;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnimation 0.6s ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

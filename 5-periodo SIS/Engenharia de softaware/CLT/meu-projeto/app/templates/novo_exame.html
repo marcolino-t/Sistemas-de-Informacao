@@ -4,53 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Novo Exame</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="container mt-5">
+<body class="fade-in">
+    <div class="container">
         <h1 class="text-center">Cadastrar Novo Exame</h1>
 
-        <form action="{{ url_for('exame.criar_exame') }}" method="POST">
+        <form action="{{ url_for('exame.criar_exame') }}" method="POST" class="form">
             <div class="form-group">
                 <label for="nome_paciente">Nome do Paciente:</label>
-                <input type="text" class="form-control" name="nome_paciente" required>
+                <input type="text" name="nome_paciente" required>
             </div>
 
             <div class="form-group">
                 <label for="nome">Nome do Exame:</label>
-                <input type="text" class="form-control" name="nome" required>
+                <input type="text" name="nome" required>
             </div>
 
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
-                <input type="text" class="form-control" name="descricao" required>
+                <input type="text" name="descricao" required>
             </div>
 
             <div class="form-group">
                 <label for="data_hora">Data e Hora:</label>
-                <input type="datetime-local" class="form-control" name="data_hora" required>
+                <input type="datetime-local" name="data_hora" required>
             </div>
 
             <div class="form-group">
                 <label for="status">Status:</label>
-                <select name="status" class="form-control" required>
+                <select name="status" required>
                     <option value="Agendado">Agendado</option>
-                    <option value="Realizado">Realizado</option>
+                    <option value="Concluído">Concluído</option>
                     <option value="Cancelado">Cancelado</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="preco">Preço:</label>
-                <input type="text" class="form-control" name="preco" required>
+                <input type="number" name="preco" step="0.01" required>
             </div>
 
-            <button type="submit" class="btn btn-success btn-block">Cadastrar Exame</button>
+            <button type="submit" class="btn">Cadastrar Exame</button>
         </form>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

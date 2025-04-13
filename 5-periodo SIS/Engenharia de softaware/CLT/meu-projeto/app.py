@@ -8,8 +8,8 @@ app = create_app()
 
 @app.route('/')
 def home():
-    # Redireciona automaticamente para a rota 'novo_exame'
-    return redirect(url_for('exame.listar_exames'))
+    # Redireciona automaticamente para a rota 'inicio'
+    return redirect(url_for('exame.pagina_inicio'))
 
 if __name__ == '__main__':
     # Inicie a aplicação com o Flask

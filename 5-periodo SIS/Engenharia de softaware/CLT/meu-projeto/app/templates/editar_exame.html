@@ -3,52 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Exame</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center">Editar Exame</h1>
-        <form action="{{ url_for('exame.editar_exame', id=exame[0]) }}" method="POST">
-            <div class="form-group">
-                <label for="nome_paciente">Nome do Paciente:</label>
-                <input type="text" class="form-control" name="nome_paciente" value="{{ exame[1] }}" required>
-            </div>
+<body class="fade-in" >
+    <div class="container">
+        <h1>Editar Exame</h1>
+        <form action="{{ url_for('exame.editar_exame', id=exame[0]) }}" method="POST" class="form">
+            <label>
+                Nome do Paciente:
+                <input type="text" name="nome_paciente" value="{{ exame[1] }}" required>
+            </label>
 
-            <div class="form-group">
-                <label for="nome">Nome do Exame:</label>
-                <input type="text" class="form-control" name="nome" value="{{ exame[2] }}" required>
-            </div>
+            <label>
+                Nome do Exame:
+                <input type="text" name="nome" value="{{ exame[2] }}" required>
+            </label>
 
-            <div class="form-group">
-                <label for="descricao">Descrição:</label>
-                <input type="text" class="form-control" name="descricao" value="{{ exame[3] }}" required>
-            </div>
+            <label>
+                Descrição:
+                <input type="text" name="descricao" value="{{ exame[3] }}" required>
+            </label>
 
-            <div class="form-group">
-                <label for="data_hora">Data e Hora:</label>
-                <input type="datetime-local" class="form-control" name="data_hora" value="{{ exame[4] }}" required>
-            </div>
+            <label>
+                Data e Hora:
+                <input type="datetime-local" name="data_hora" value="{{ exame[4] }}" required>
+            </label>
 
-            <div class="form-group">
-                <label for="status">Status:</label>
-                <select name="status" class="form-control" required>
+            <label>
+                Status:
+                <select name="status" required>
                     <option value="Agendado" {% if exame[5] == 'Agendado' %} selected {% endif %}>Agendado</option>
                     <option value="Realizado" {% if exame[5] == 'Realizado' %} selected {% endif %}>Realizado</option>
                     <option value="Cancelado" {% if exame[5] == 'Cancelado' %} selected {% endif %}>Cancelado</option>
                 </select>
-            </div>
+            </label>
 
-            <div class="form-group">
-                <label for="preco">Preço:</label>
-                <input type="text" class="form-control" name="preco" value="{{ exame[6] }}" required>
-            </div>
+            <label>
+                Preço:
+                <input type="text" name="preco" value="{{ exame[6] }}" required>
+            </label>
 
-            <button type="submit" class="btn btn-warning btn-block">Atualizar Exame</button>
+            <button type="submit" class="btn">Atualizar Exame</button>
         </form>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
