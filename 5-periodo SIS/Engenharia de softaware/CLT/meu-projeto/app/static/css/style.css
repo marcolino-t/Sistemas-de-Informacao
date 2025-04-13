@@ -8,10 +8,8 @@
 /* ESTILOS GERAIS */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: url('https://www.example.com/sua-imagem.jpg') center/cover no-repeat;
-    background-size: cover;
     background: url('/static/images/imagem.jpg') center/cover no-repeat;
-    background-blur: 10px;
+    background-size: cover;
     color: #fff;
     line-height: 1.6;
     margin: 0;
@@ -19,32 +17,32 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
+/* Container principal */
 .inicio-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     width: 100%;
-    
-    background-size: cover;
-    background-attachment: fixed;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Sobrepor com um fundo escuro */
     position: absolute;
     top: 0;
     left: 0;
-
 }
 
-/* Caixa de login */
+/* Caixa de conteúdo */
 .inicio-content {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 2rem 3rem;
     border-radius: 12px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
     max-width: 700px;
-    width: 100%;
     text-align: center;
+    width: 100%;
+    animation: fadeInAnimation 0.8s ease-out forwards;
 }
 
 /* Título */
@@ -53,6 +51,7 @@ body {
     font-weight: 700;
     color: #fff;
     margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 /* Descrição */
@@ -62,57 +61,103 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Botões */
-.cta-buttons {
+/* Contêiner de Botões */
+.cta-container {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+    flex-direction: column; 
+    gap: 1.5rem; 
+    width: 100%;
 }
 
-.cta-buttons .btn {
-    padding: 1rem 2rem;
+/* Contêiner de cada item (botão) */
+.cta-item {
+    width: 100%;
+}
+
+/* Estilização dos Botões */
+.btn {
+    display: block;
+    padding: 1.2rem 2.5rem;
     font-size: 1.1rem;
-    border-radius: 8px;
-    text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.cta-buttons .btn-primary {
-    background-color: #2563eb;
+/* Botão Primário */
+.btn-primary {
+    background-color: #3b6edb;
     color: white;
 }
 
-.cta-buttons .btn-secondary {
-    background-color: #f59e0b;
-    color: white;
-}
-
-.cta-buttons .btn-primary:hover {
+.btn-primary:hover {
     background-color: #1e3a8a;
+    transform: translateY(-2px);
 }
 
-.cta-buttons .btn-secondary:hover {
-    background-color: #d97706;
+.btn-primary:active {
+    transform: translateY(0);
 }
 
-/* Seção sobre o projeto */
-.info-section {
-    margin-top: 3rem;
-    text-align: left;
-    color: #ddd;
+/* Botão Secundário */
+.btn-secondary {
+    background-color: #2e97b1;
+    color: white;
 }
 
-.info-section ul {
-    list-style-type: none;
-    padding: 0;
+.btn-secondary:hover {
+    background-color: #a3a3a3;
+    transform: translateY(-2px);
 }
 
-.info-section li {
-    font-size: 1.1rem;
-    margin-bottom: 0.7rem;
+.btn-secondary:active {
+    transform: translateY(0);
 }
+
+/* Animação de Fade-in */
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnimation 0.8s ease-out forwards;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .inicio-content {
+        padding: 1.5rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 1rem 2rem;
+    }
+
+    .inicio-title {
+        font-size: 2rem;
+    }
+
+    .inicio-description {
+        font-size: 1rem;
+    }
+}
+
+
+/*------------------------------------------------------------------------------------------*/
+
 
 /* RESET GLOBAL */
 * {

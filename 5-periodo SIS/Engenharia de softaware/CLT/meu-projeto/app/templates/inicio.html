@@ -14,9 +14,19 @@
             <h1 class="inicio-title">Sistema de Exames</h1>
             <p class="inicio-description">Gerencie os exames médicos de forma simples e eficiente.</p>
             
-            <div class="cta-buttons">
-                <a href="{{ url_for('exame.listar_exames') }}" class="btn btn-primary" style="margin-bottom: 1rem;">Ver Exames</a>
-                <a href="{{ url_for('exame.novo_exame') }}" class="btn btn-secondary">Cadastrar Novo Exame</a>
+        
+            <div class="cta-container">
+                
+                
+                <div class="cta-item">
+                    <a href="{{ url_for('exame.listar_exames') }}" class="btn btn-primary">Ver agendamentos</a>
+                </div>
+                
+                
+                <div class="cta-item">
+                    <a href="{{ url_for('exame.novo_exame') }}" class="btn btn-secondary">Agendar Exame</a>
+                </div>
+
             </div>
         </div>
     </div>
