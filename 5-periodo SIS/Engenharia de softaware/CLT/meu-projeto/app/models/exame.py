@@ -66,3 +66,22 @@ class Exame:
             return None
         finally:
             cursor.close()
+
+    @staticmethod
+    def buscar_por_nome_paciente(nome_paciente):
+        try:
+            cursor = mysql.connection.cursor()
+            consulta = """
+                SELECT * FROM exames
+                WHERE nome_paciente LIKE %s
+            """
+            like = f"%{nome_paciente}%"
+            cursor.execute(consulta, (like,))
+            exames = cursor.fetchall()
+            return exames
+        except Exception as e:
+            print(f"Erro ao buscar por nome do paciente: {e}")
+            return []
+        finally:
+            cursor.close()
+

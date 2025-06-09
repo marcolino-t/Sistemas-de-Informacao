@@ -1,52 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Exames</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Exames</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="fade-in">
-    <div class="container">
-        <h1>Exames Cadastrados</h1>
-        
-        <div class="actions">
-            <a href="{{ url_for('exame.novo_exame') }}" class="btn">Cadastrar Novo Exame</a>
-        </div>
 
-        <div class="table-container">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Nome do Paciente</th>
-                        <th>Nome do Exame</th>
-                        <th>Descrição</th>
-                        <th>Data e Hora</th>
-                        <th>Status</th>
-                        <th>Preço</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for exame in exames %}
-                    <tr>
-                        <td>{{ exame[1] }}</td>
-                        <td>{{ exame[2] }}</td>
-                        <td>{{ exame[3] }}</td>
-                        <td>{{ exame[4] }}</td>
-                        <td>{{ exame[5] }}</td>
-                        <td>R$ {{ exame[6] }}</td>
-                        <td class="btn-group">
-                            <a href="{{ url_for('exame.editar_exame', id=exame[0]) }}" class="btn small warning">Editar</a>
-                            <a href="{{ url_for('exame.deletar_exame', id=exame[0]) }}" class="btn small danger" onclick="return confirmarExclusao()">Excluir</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+  <div class="container">
+    <h1 class="m-0">Exames Cadastrados</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <a href="{{ url_for('exame.novo_exame') }}" class="btn btn-success">Cadastrar Novo Exame</a>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <form method="GET" action="{{ url_for('exame.listar_exames') }}" class="search-bar mb-4">
+      <input 
+        type="text" 
+        name="busca" 
+        placeholder="Buscar por nome do paciente..." 
+        value="{{ request.args.get('busca', '') }}" 
+        class="form-control search-input" 
+        autocomplete="off"
+      >
+      <button type="submit" class="btn-icon" title="Buscar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" viewBox="0 0 24 24">
+          <path d="M10 2a8 8 0 015.293 13.707l4.5 4.5a1 1 0 01-1.414 1.414l-4.5-4.5A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Nome do Paciente</th>
+            <th>Nome do Exame</th>
+            <th>Descrição</th>
+            <th>Data e Hora</th>
+            <th>Status</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for exame in exames %}
+          <tr>
+            <td>{{ exame[1] }}</td>
+            <td>{{ exame[2] }}</td>
+            <td>{{ exame[3] }}</td>
+            <td>{{ exame[4] }}</td>
+            <td>{{ exame[5] }}</td>
+            <td>R$ {{ exame[6] }}</td>
+            <td class="btn-group">
+              <a href="{{ url_for('exame.editar_exame', id=exame[0]) }}" class="btn small warning">Editar</a>
+              <a href="#" class="btn small danger" onclick="confirmarExclusao('{{ url_for('exame.deletar_exame', id=exame[0]) }}')">Excluir</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="logout d-flex justify-content-end mb-3">
+        <a href="{{ url_for('exame.logout') }}" class="btn btn-outline-dark logout-btn">Sair</a>
+      </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

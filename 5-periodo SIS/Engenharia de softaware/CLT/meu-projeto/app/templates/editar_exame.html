@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="fade-in" >
-    <div class="container">
+    <div class="container-editar-exame">
         <h1>Editar Exame</h1>
         <form action="{{ url_for('exame.editar_exame', id=exame[0]) }}" method="POST" class="form">
             <label>

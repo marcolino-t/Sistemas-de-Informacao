@@ -1,7 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.models.exame import Exame  
+from flask import session
 
 exame_blueprint = Blueprint('exame', __name__)
+
+
+@exame_blueprint.route('/login')
+def login_fake():
+    return render_template('login.html')
+
 
 @exame_blueprint.route('/inicio')
 def pagina_inicio():
@@ -10,8 +17,16 @@ def pagina_inicio():
 # Rota para listar todos os exames
 @exame_blueprint.route('/exames', methods=['GET'])
 def listar_exames():
-    exames = Exame.listar_exames()  
+    termo_busca = request.args.get('busca', '').strip()
+
+    if termo_busca:
+        exames = Exame.buscar_por_nome_paciente(termo_busca)
+    else:
+        exames = Exame.listar_exames()
+
     return render_template('index.html', exames=exames)
+
+
 
 # Rota para exibir o formulário de cadastro de novo exame
 @exame_blueprint.route('/exames/novo', methods=['GET'])
@@ -54,3 +69,10 @@ def editar_exame(id):
 def deletar_exame(id):
     Exame.deletar_exame(id)
     return redirect(url_for('exame.listar_exames'))
+
+@exame_blueprint.route('/login')
+def logout():
+    session.clear()
+    return redirect(url_for('exame.login_fake'))
+
+
