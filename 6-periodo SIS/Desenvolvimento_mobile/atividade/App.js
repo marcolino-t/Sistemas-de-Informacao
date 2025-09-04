@@ -4,20 +4,23 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Tela1 from "./src/Tela1";
 import Tela2 from "./src/Tela2";
-import Login from "./src/Login";
+import Tela3 from "./src/Tela3";
+import Tela4 from "./src/Tela4";
+import Tela5 from "./src/Tela5";
+import Tela6 from "./src/Tela6";
 
 const Stack = createNativeStackNavigator();
-
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} />
+      <Stack.Navigator initialRouteName="Tela1">
         <Stack.Screen name="Tela1" component={Tela1} />
-
-
         <Stack.Screen name="Tela2" component={Tela2} />
+        <Stack.Screen name="Tela3" component={Tela3} />
+        <Stack.Screen name="Tela4" component={Tela4} />
+        <Stack.Screen name="Tela5" component={Tela5} />
+        <Stack.Screen name="Tela6" component={Tela6} />
       </Stack.Navigator>
     </NavigationContainer>
   );

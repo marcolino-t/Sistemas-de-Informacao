@@ -8,8 +8,9 @@ export default function Login(props) {
 
     function entrar(){
         // Lógica de autenticação
-        if (usuario == "admin" && senha === "123") {
-           props.navigation.navigate("Tela1");
+        if (senha === "123") {
+            global.usuario = usuario;
+            props.navigation.navigate("Tela1");
         } else {
             setMensagem("Usuário ou senha inválidos.");
         }
