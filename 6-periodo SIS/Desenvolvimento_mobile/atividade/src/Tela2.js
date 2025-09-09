@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Button, StyleSheet, TextInput } from 'react-native';
+import { Text, View, Button, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 export default function Tela2({ navigation }) {
     const [altura, setAltura] = useState('');
@@ -11,32 +11,49 @@ export default function Tela2({ navigation }) {
 
     function irTela3() {
         navigation.navigate('Tela3');
+        globalThis.altura = altura;
+        globalThis.peso = peso;
+    }
+
+    function fecharTeclado() {
+        Keyboard.dismiss();
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Altura</Text>
-            <TextInput 
-                style={styles.input}
-                value={altura} 
-                onChangeText={setAltura} 
-                placeholder="Digite sua altura"
-            />
-            <Text style={styles.title}>Peso</Text>
-            <TextInput 
-                style={styles.input}
-                value={peso} 
-                onChangeText={setPeso} 
-                placeholder="Digite seu peso"
-                keyboardType="numeric"
-            />
-            <Text style={styles.subtitle}>Segunda tela da aplicação</Text>
-            
-            <View style={styles.buttonContainer}>
-                <Button title="Voltar" onPress={voltarTela1} />
-                <Button title="Próximo" onPress={irTela3} />
+        <TouchableWithoutFeedback onPress={fecharTeclado}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Dados Corporais</Text>
+                <Text style={styles.subtitle}>Informe sua altura e peso</Text>
+                <Text style={styles.label}>Altura (m)</Text>
+                <TextInput 
+                    style={styles.input}
+                    value={altura} 
+                    onChangeText={setAltura} 
+                    placeholder="Digite sua altura"
+                    keyboardType="numeric"
+                    returnKeyType="next"
+                />
+                <Text style={styles.label}>Peso (kg)</Text>
+                <TextInput 
+                    style={styles.input}
+                    value={peso} 
+                    onChangeText={setPeso} 
+                    placeholder="Digite seu peso"
+                    keyboardType="numeric"
+                    returnKeyType="done"
+                    onSubmitEditing={fecharTeclado}
+                />
+                
+                <View style={styles.buttonContainer}>
+                    <Button title="Fechar Teclado" onPress={fecharTeclado} />
+                </View>
+                
+                <View style={styles.buttonContainer}>
+                    <Button title="Voltar" onPress={voltarTela1} />
+                    <Button title="Próximo" onPress={irTela3} />
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -56,9 +73,15 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        marginBottom: 30,
+        marginBottom: 20,
         color: '#666',
         textAlign: 'center',
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: '#333',
     },
     buttonContainer: {
         flexDirection: 'row',

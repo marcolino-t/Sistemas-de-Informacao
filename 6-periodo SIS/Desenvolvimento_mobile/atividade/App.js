@@ -8,6 +8,8 @@ import Tela3 from "./src/Tela3";
 import Tela4 from "./src/Tela4";
 import Tela5 from "./src/Tela5";
 import Tela6 from "./src/Tela6";
+import Tela7 from "./src/Tela7";
+import Tela8 from "./src/Tela8";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,8 @@ export default function App() {
         <Stack.Screen name="Tela4" component={Tela4} />
         <Stack.Screen name="Tela5" component={Tela5} />
         <Stack.Screen name="Tela6" component={Tela6} />
+        <Stack.Screen name="Tela7" component={Tela7} />
+        <Stack.Screen name="Tela8" component={Tela8} />
       </Stack.Navigator>
     </NavigationContainer>
   );

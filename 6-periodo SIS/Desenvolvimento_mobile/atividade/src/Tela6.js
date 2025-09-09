@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Button, StyleSheet, TextInput } from 'react-native';
+import { Text, View, Button, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 export default function Tela6({ navigation }) {
     const [passosNoDia, setPassosNoDia] = useState('');
@@ -9,27 +9,54 @@ export default function Tela6({ navigation }) {
         navigation.navigate('Tela5');
     }
 
+    function irTela7() {
+        if (!passosNoDia || passosNoDia.trim() === '') {
+            alert('Por favor, digite o número de passos antes de continuar.');
+            return;
+        }
+        
+        // Salvar o valor globalmente
+        globalThis.passosNoDia = passosNoDia;
+        
+        // Navegar para a próxima tela
+        navigation.navigate('Tela7');
+    }
+
     function voltarTela1() {
         navigation.navigate('Tela1');
     }
 
+    function fecharTeclado() {
+        Keyboard.dismiss();
+    }
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Passos no dia</Text>
-            <TextInput 
-                style={styles.input}
-                value={passosNoDia} 
-                onChangeText={setPassosNoDia} 
-                placeholder="Digite o número de passos no dia"
-                keyboardType="numeric"
-            />
-            
-            
-            <View style={styles.buttonContainer}>
-                <Button title="Voltar Tela 5" onPress={voltarTela5} />
-                <Button title="Voltar Tela 1" onPress={voltarTela1} />
+        <TouchableWithoutFeedback onPress={fecharTeclado}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Atividade Física</Text>
+                <Text style={styles.subtitle}>Informe quantos passos você deu hoje</Text>
+                <Text style={styles.label}>Passos no dia</Text>
+                <TextInput 
+                    style={styles.input}
+                    value={passosNoDia} 
+                    onChangeText={setPassosNoDia} 
+                    placeholder="Digite o número de passos no dia"
+                    keyboardType="numeric"
+                    returnKeyType="done"
+                    onSubmitEditing={fecharTeclado}
+                />
+                
+                <View style={styles.buttonContainer}>
+                    <Button title="Fechar Teclado" onPress={fecharTeclado} />
+                </View>
+                
+                <View style={styles.buttonContainer}>
+                    <Button title="Voltar" onPress={voltarTela5} />
+                    <Button title="Próximo" onPress={irTela7} />
+                    <Button title="Tela 1" onPress={voltarTela1} />
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -39,7 +66,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#e8f5e8',
+        backgroundColor: '#ffffffff',
     },
     title: {
         fontSize: 24,
@@ -49,9 +76,15 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        marginBottom: 10,
+        marginBottom: 20,
         color: '#666',
         textAlign: 'center',
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: '#333',
     },
     message: {
         fontSize: 18,
