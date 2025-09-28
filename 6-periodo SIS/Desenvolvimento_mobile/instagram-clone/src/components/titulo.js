@@ -32,7 +32,7 @@ export default function Titulo() {
           
           <TouchableOpacity style={styles.iconButton}>
             <Image 
-              source={require('../../assets/icons/direct.png')} 
+              source={require('../../assets/icons/directt.png')} 
               style={styles.icon}
               resizeMode="contain"
             />

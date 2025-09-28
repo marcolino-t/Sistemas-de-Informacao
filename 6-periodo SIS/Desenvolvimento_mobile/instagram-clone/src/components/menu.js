@@ -11,9 +11,9 @@ export default function Menu({ activeTab, onTabPress }) {
   const menuItems = [
     { id: 'home', icon: require('../../assets/icons/home.png'), label: 'Home' },
     { id: 'search', icon: require('../../assets/icons/search.png'), label: 'Busca' },
-    { id: 'reels', icon: require('../../assets/icons/reels.png'), label: 'Reels' },
-    { id: 'shop', icon: require('../../assets/icons/sho\p.png'), label: 'Loja' },
-    { id: 'profile', icon: require('../../assets/icons/profile.png'), label: 'Perfil' },
+    { id: 'reels', icon: require('../../assets/icons/mais.png'), label: 'Reels' },
+    { id: 'shop', icon: require('../../assets/icons/reels.png'), label: 'Loja' },
+    { id: 'profile', icon: require('../../assets/icons/perfil.png'), label: 'Perfil' },
   ];
 
   return (
