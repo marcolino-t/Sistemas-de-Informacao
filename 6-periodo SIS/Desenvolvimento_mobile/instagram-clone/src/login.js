@@ -28,7 +28,11 @@ export default function Login({ navigation }) {
       <View style={styles.content}>
         {/* Logo do Instagram */}
         <View style={styles.logoContainer}>
-          <Text style={styles.logo}>Instagram</Text>
+          <Image
+            source={require('../assets/icons/instalogo.png')} 
+            style={styles.logo}
+            resizeMode="contain"
+          />
         </View>
 
         {/* Formulário de Login */}
@@ -97,10 +101,8 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   logo: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#000',
-    fontFamily: 'serif',
+    width: 180,   
+    height: 60,   
   },
   formContainer: {
     marginBottom: 30,
