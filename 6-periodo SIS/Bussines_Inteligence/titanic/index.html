@@ -204,10 +204,16 @@
     <script>
         async function carregarDados() {
             try {
+                console.log('Tentando conectar com a API...');
                 const response = await fetch('http://localhost:8000/');
-                if (!response.ok) throw new Error('Erro na API');
+                console.log('Resposta recebida:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+                }
                 
                 const dados = await response.json();
+                console.log('Dados recebidos:', dados);
                 
                 // Mostrar estatísticas
                 document.getElementById('stats').innerHTML = `
@@ -325,8 +331,18 @@
                 document.getElementById('content').style.display = 'block';
                 
             } catch (error) {
-                console.error('Erro:', error);
+                console.error('Erro detalhado:', error);
                 document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').innerHTML = `
+                    <h3>❌ Erro ao carregar dados</h3>
+                    <p><strong>Detalhes:</strong> ${error.message}</p>
+                    <p><strong>Possíveis soluções:</strong></p>
+                    <ul style="text-align: left; margin: 10px 0;">
+                        <li>Verifique se a API está rodando (python api.py)</li>
+                        <li>Abra o console do navegador (F12) para mais detalhes</li>
+                        <li>Teste a API diretamente: <a href="http://localhost:8000/" target="_blank">http://localhost:8000/</a></li>
+                    </ul>
+                `;
                 document.getElementById('error').style.display = 'block';
             }
         }
