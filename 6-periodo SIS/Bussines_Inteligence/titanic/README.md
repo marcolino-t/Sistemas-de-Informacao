@@ -51,3 +51,4 @@ A interface apresenta:
 - Os dados são carregados automaticamente de uma fonte pública
 - A API processa os dados em tempo real
 - Interface otimizada para scroll e navegação
+
