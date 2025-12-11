@@ -1,11 +1,9 @@
 import pandas as pd
+from pathlib import Path
 
-#criando DataFrame
+BASE_DIR = Path(__file__).resolve().parent
+CSV_PATH = BASE_DIR / "dados.csv"
+PARQUET_PATH = BASE_DIR / "dados.parquet"
 
-data = {"id": [1, 2, 3], "nome":['Ana', 'Bruno', 'Carlos'], "idade":[23, 35, 29]}
-
-df = pd.DataFrame(data)
-
-
-#salvando em Parquet
-df.to_parquet("dados.parquet", engine="pyarrow", index=False)
+df = pd.read_csv(CSV_PATH)
+df.to_parquet(PARQUET_PATH, engine="pyarrow", index=False)

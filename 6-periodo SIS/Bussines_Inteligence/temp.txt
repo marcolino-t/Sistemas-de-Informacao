@@ -1,0 +1,13 @@
+# csv_to_parquet.py
+import pandas as pd
+
+csv_file = "C:\Users\tmarc\OneDrive\Documentos\github\Sistemas-de-Informacao\6-periodo SIS\Bussines_Inteligence\aula11-11-25\dados_anonimizados3.csv"          # caminho do CSV
+parquet_file = "anonimizados.parquet"  # nome do arquivo de saída
+
+df = pd.read_csv(csv_file)
+df.to_parquet(parquet_file, index=False)
+
+print("✅ CSV convertido para Parquet:", parquet_file)
+
+
+
